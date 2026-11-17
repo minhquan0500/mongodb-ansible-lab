@@ -1,0 +1,24 @@
+---
+- name: Verify all five MongoDB nodes
+  hosts: localhost
+  gather_facts: false
+  vars_files:
+    - ../group_vars/all.yml
+  tasks:
+    - name: Check credentials are supplied
+      ansible.builtin.assert:
+        that: mongo_admin_password | length >= 16
+        fail_msg: Set MONGO_ADMIN_PASSWORD to at least 16 characters.
+      no_log: true
+    - name: Verify authenticated cluster health
+      ansible.builtin.command: bash scripts/check_cluster.sh
+      args:
+        chdir: "{{ project_dir }}"
+      environment:
+        MONGO_ADMIN_USER: "{{ mongo_admin_user }}"
+        MONGO_ADMIN_PASSWORD: "{{ mongo_admin_password }}"
+      register: health
+      changed_when: false
+    - name: Show PASS results
+      ansible.builtin.debug:
+        var: health.stdout_lines

@@ -1,0 +1,7 @@
+mongo4 Up 50 seconds (healthy)
+mongo5 Up 50 seconds (healthy)
+mongo2 Up 50 seconds (healthy)
+mongo3 Up 50 seconds (healthy)
+mongo1 Up 50 seconds (healthy)
+
+EXIT_CODE=0

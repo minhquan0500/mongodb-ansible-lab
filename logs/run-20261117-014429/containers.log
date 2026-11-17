@@ -1,0 +1,6 @@
+NAME      IMAGE                                COMMAND                  SERVICE   CREATED         STATUS                   PORTS
+mongo1    mongodb-ansible-lab-runtime:6.0.26   "/bin/bash -ec 'cp /…"   mongo1    2 minutes ago   Up 2 minutes (healthy)   
+mongo2    mongodb-ansible-lab-runtime:6.0.26   "/bin/bash -ec 'cp /…"   mongo2    2 minutes ago   Up 2 minutes (healthy)   
+mongo3    mongodb-ansible-lab-runtime:6.0.26   "/bin/bash -ec 'cp /…"   mongo3    2 minutes ago   Up 2 minutes (healthy)   
+mongo4    mongodb-ansible-lab-runtime:6.0.26   "/bin/bash -ec 'cp /…"   mongo4    2 minutes ago   Up 2 minutes (healthy)   
+mongo5    mongodb-ansible-lab-runtime:6.0.26   "/bin/bash -ec 'cp /…"   mongo5    2 minutes ago   Up 2 minutes (healthy)   

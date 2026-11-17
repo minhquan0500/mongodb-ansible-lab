@@ -1,0 +1,52 @@
+---
+- name: Require a strong external credential
+  ansible.builtin.assert:
+    that:
+      - mongo_admin_password | length >= 16
+      - mongo_admin_user | length > 0
+  no_log: true
+- name: Refuse container names owned by other projects
+  ansible.builtin.command: python3 scripts/cluster.py preflight
+  args:
+    chdir: "{{ project_dir }}"
+  changed_when: false
+- name: Create private key directory
+  ansible.builtin.file:
+    path: "{{ project_dir }}/.secrets"
+    state: directory
+    mode: '0700'
+- name: Generate persistent internal key once
+  ansible.builtin.shell: "umask 077; openssl rand -base64 756 > .secrets/rs0.key"
+  args:
+    chdir: "{{ project_dir }}"
+    creates: "{{ project_dir }}/.secrets/rs0.key"
+  no_log: true
+- name: Start five authenticated MongoDB nodes
+  community.docker.docker_compose_v2:
+    project_src: "{{ project_dir }}"
+    project_name: "{{ project_name }}"
+    files: "{{ compose_files | default(['docker-compose.yml']) }}"
+    state: present
+    remove_orphans: false
+    wait: true
+    wait_timeout: 180
+- name: Initialize replica set only when absent
+  ansible.builtin.command: python3 scripts/cluster.py init
+  args:
+    chdir: "{{ project_dir }}"
+  environment:
+    MONGO_ADMIN_USER: "{{ mongo_admin_user }}"
+    MONGO_ADMIN_PASSWORD: "{{ mongo_admin_password }}"
+  register: initiation
+  changed_when: "'CHANGED' in initiation.stdout"
+  no_log: true
+- name: Wait for election and create initial administrator only if absent
+  ansible.builtin.command: python3 scripts/cluster.py bootstrap
+  args:
+    chdir: "{{ project_dir }}"
+  environment:
+    MONGO_ADMIN_USER: "{{ mongo_admin_user }}"
+    MONGO_ADMIN_PASSWORD: "{{ mongo_admin_password }}"
+  register: administrator
+  changed_when: "'CHANGED' in administrator.stdout"
+  no_log: true

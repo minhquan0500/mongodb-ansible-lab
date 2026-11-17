@@ -1,0 +1,16 @@
+Filesystem      Size  Used Avail Use% Mounted on
+overlay         7.9G  5.9G  1.6G  79% /workspace
+vfs
+DRIVER    VOLUME NAME
+local     mongodb-ansible-lab_config1
+local     mongodb-ansible-lab_config2
+local     mongodb-ansible-lab_config3
+local     mongodb-ansible-lab_config4
+local     mongodb-ansible-lab_config5
+local     mongodb-ansible-lab_data1
+local     mongodb-ansible-lab_data2
+local     mongodb-ansible-lab_data3
+local     mongodb-ansible-lab_data4
+local     mongodb-ansible-lab_data5
+
+EXIT_CODE=0

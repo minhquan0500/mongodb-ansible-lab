@@ -1,0 +1,8 @@
+/mongo1 PASS: 1GiB limit, no published ports, persistent data volume
+/mongo2 PASS: 1GiB limit, no published ports, persistent data volume
+/mongo3 PASS: 1GiB limit, no published ports, persistent data volume
+/mongo4 PASS: 1GiB limit, no published ports, persistent data volume
+/mongo5 PASS: 1GiB limit, no published ports, persistent data volume
+PASS: internal network, five separate data volumes
+
+EXIT_CODE=0

@@ -1,0 +1,7 @@
+.secrets/
+.env
+*.retry
+.venv/
+.ansible/
+__pycache__/
+.runtime/

@@ -1,0 +1,4 @@
+
+playbook: playbooks/deploy.yml
+
+EXIT_CODE=0

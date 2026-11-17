@@ -1,0 +1,4 @@
+project_name: mongodb-ansible-lab
+project_dir: "{{ playbook_dir | dirname }}"
+mongo_admin_user: "{{ lookup('env', 'MONGO_ADMIN_USER') | default('labadmin', true) }}"
+mongo_admin_password: "{{ lookup('env', 'MONGO_ADMIN_PASSWORD') }}"

@@ -1,0 +1,77 @@
+name: mongodb-ansible-lab
+x-mongo: &mongo
+  image: mongo:6.0.26
+  restart: unless-stopped
+  mem_limit: 1g
+  cpus: 1.0
+  networks: [rsnet]
+  labels:
+    lab.owner: mongodb-ansible-lab
+  entrypoint: ["/bin/bash", "-ec"]
+  command:
+    - |
+      cp /run/rs0.key /tmp/rs0.key
+      chown mongodb:mongodb /tmp/rs0.key
+      chmod 400 /tmp/rs0.key
+      exec /usr/local/bin/docker-entrypoint.sh mongod --replSet rs0 --bind_ip_all --keyFile /tmp/rs0.key --auth --wiredTigerCacheSizeGB 0.25
+  healthcheck:
+    test: ["CMD", "mongosh", "--quiet", "--eval", "quit(db.adminCommand({ping:1}).ok === 1 ? 0 : 1)"]
+    interval: 10s
+    timeout: 10s
+    retries: 18
+    start_period: 20s
+services:
+  mongo1:
+    <<: *mongo
+    container_name: mongo1
+    hostname: mongo1
+    volumes:
+      - data1:/data/db
+      - config1:/data/configdb
+      - ./.secrets/rs0.key:/run/rs0.key:ro
+  mongo2:
+    <<: *mongo
+    container_name: mongo2
+    hostname: mongo2
+    volumes:
+      - data2:/data/db
+      - config2:/data/configdb
+      - ./.secrets/rs0.key:/run/rs0.key:ro
+  mongo3:
+    <<: *mongo
+    container_name: mongo3
+    hostname: mongo3
+    volumes:
+      - data3:/data/db
+      - config3:/data/configdb
+      - ./.secrets/rs0.key:/run/rs0.key:ro
+  mongo4:
+    <<: *mongo
+    container_name: mongo4
+    hostname: mongo4
+    volumes:
+      - data4:/data/db
+      - config4:/data/configdb
+      - ./.secrets/rs0.key:/run/rs0.key:ro
+  mongo5:
+    <<: *mongo
+    container_name: mongo5
+    hostname: mongo5
+    volumes:
+      - data5:/data/db
+      - config5:/data/configdb
+      - ./.secrets/rs0.key:/run/rs0.key:ro
+networks:
+  rsnet:
+    internal: true
+volumes:
+  data1:
+  config1:
+  data2:
+  config2:
+  data3:
+  config3:
+  data4:
+  config4:
+  data5:
+  config5:

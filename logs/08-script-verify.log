@@ -1,0 +1,4 @@
+FAIL: mongo1 is absent or not running
+PASS: project ownership/name checks
+
+EXIT_CODE=1

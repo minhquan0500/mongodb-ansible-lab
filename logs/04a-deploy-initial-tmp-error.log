@@ -1,0 +1,12 @@
+
+PLAY [Deploy MongoDB 6.0 five-node replica set] ********************************
+
+TASK [mongodb_deploy : Require a strong external credential] *******************
+ok: [localhost]
+
+TASK [mongodb_deploy : Refuse container names owned by other projects] *********
+fatal: [localhost]: UNREACHABLE! => {"changed": false, "msg": "Failed to create temporary directory. In some cases, you may have been able to authenticate and did not have permissions on the target directory. Consider changing the remote tmp path in ansible.cfg to a path rooted in \"/tmp\", for more error information use -vvv. Failed command was: ( umask 77 && mkdir -p \"` echo /home/agent/.ansible/tmp `\"&& mkdir \"` echo /home/agent/.ansible/tmp/ansible-tmp-1794878848.2492142-860-229522736610867 `\" && echo ansible-tmp-1794878848.2492142-860-229522736610867=\"` echo /home/agent/.ansible/tmp/ansible-tmp-1794878848.2492142-860-229522736610867 `\" ), exited with result 1", "unreachable": true}
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=1    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+

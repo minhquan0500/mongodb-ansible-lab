@@ -1,0 +1,4 @@
+
+playbook: playbooks/verify.yml
+
+EXIT_CODE=0

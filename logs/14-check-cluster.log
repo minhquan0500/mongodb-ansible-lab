@@ -1,0 +1,42 @@
+PASS: project ownership/name checks
+PASS: mongo1: MongoDB 6.0.26, rs0, 5 voting data members, 1 PRIMARY, 4 SECONDARY, all healthy
+PASS: mongo2: MongoDB 6.0.26, rs0, 5 voting data members, 1 PRIMARY, 4 SECONDARY, all healthy
+PASS: mongo3: MongoDB 6.0.26, rs0, 5 voting data members, 1 PRIMARY, 4 SECONDARY, all healthy
+PASS: mongo4: MongoDB 6.0.26, rs0, 5 voting data members, 1 PRIMARY, 4 SECONDARY, all healthy
+PASS: mongo5: MongoDB 6.0.26, rs0, 5 voting data members, 1 PRIMARY, 4 SECONDARY, all healthy
+{
+  "ok": true,
+  "version": "6.0.26",
+  "set": "rs0",
+  "primary": 1,
+  "secondary": 4,
+  "members": [
+    {
+      "name": "mongo1:27017",
+      "state": "PRIMARY",
+      "health": 1
+    },
+    {
+      "name": "mongo2:27017",
+      "state": "SECONDARY",
+      "health": 1
+    },
+    {
+      "name": "mongo3:27017",
+      "state": "SECONDARY",
+      "health": 1
+    },
+    {
+      "name": "mongo4:27017",
+      "state": "SECONDARY",
+      "health": 1
+    },
+    {
+      "name": "mongo5:27017",
+      "state": "SECONDARY",
+      "health": 1
+    }
+  ]
+}
+
+EXIT_CODE=0

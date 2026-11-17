@@ -1,0 +1,85 @@
+
+PLAY [Deploy MongoDB 6.0 five-node replica set] ********************************
+
+TASK [mongodb_deploy : Require a strong external credential] *******************
+ok: [localhost]
+
+TASK [mongodb_deploy : Refuse container names owned by other projects] *********
+ok: [localhost]
+
+TASK [mongodb_deploy : Create private key directory] ***************************
+ok: [localhost]
+
+TASK [mongodb_deploy : Generate persistent internal key once] ******************
+ok: [localhost]
+
+TASK [mongodb_deploy : Start five authenticated MongoDB nodes] *****************
+changed: [localhost]
+
+TASK [mongodb_deploy : Initialize replica set only when absent] ****************
+changed: [localhost]
+
+TASK [mongodb_deploy : Wait for election and create initial administrator only if absent] ***
+changed: [localhost]
+
+PLAY [Verify all five MongoDB nodes] *******************************************
+
+TASK [Check credentials are supplied] ******************************************
+ok: [localhost]
+
+TASK [Verify authenticated cluster health] *************************************
+ok: [localhost]
+
+TASK [Show PASS results] *******************************************************
+[DEPRECATION WARNING]: Direct access to the `_available_variables` internal 
+attribute is deprecated. Use `available_variables` instead. This feature will 
+be removed in version 2.23. Deprecation warnings can be disabled by setting 
+deprecation_warnings=False in ansible.cfg.
+ok: [localhost] => {
+    "health.stdout_lines": [
+        "PASS: project ownership/name checks",
+        "PASS: mongo1: MongoDB 6.0.26, rs0, 5 voting data members, 1 PRIMARY, 4 SECONDARY, all healthy",
+        "PASS: mongo2: MongoDB 6.0.26, rs0, 5 voting data members, 1 PRIMARY, 4 SECONDARY, all healthy",
+        "PASS: mongo3: MongoDB 6.0.26, rs0, 5 voting data members, 1 PRIMARY, 4 SECONDARY, all healthy",
+        "PASS: mongo4: MongoDB 6.0.26, rs0, 5 voting data members, 1 PRIMARY, 4 SECONDARY, all healthy",
+        "PASS: mongo5: MongoDB 6.0.26, rs0, 5 voting data members, 1 PRIMARY, 4 SECONDARY, all healthy",
+        "{",
+        "  \"ok\": true,",
+        "  \"version\": \"6.0.26\",",
+        "  \"set\": \"rs0\",",
+        "  \"primary\": 1,",
+        "  \"secondary\": 4,",
+        "  \"members\": [",
+        "    {",
+        "      \"name\": \"mongo1:27017\",",
+        "      \"state\": \"PRIMARY\",",
+        "      \"health\": 1",
+        "    },",
+        "    {",
+        "      \"name\": \"mongo2:27017\",",
+        "      \"state\": \"SECONDARY\",",
+        "      \"health\": 1",
+        "    },",
+        "    {",
+        "      \"name\": \"mongo3:27017\",",
+        "      \"state\": \"SECONDARY\",",
+        "      \"health\": 1",
+        "    },",
+        "    {",
+        "      \"name\": \"mongo4:27017\",",
+        "      \"state\": \"SECONDARY\",",
+        "      \"health\": 1",
+        "    },",
+        "    {",
+        "      \"name\": \"mongo5:27017\",",
+        "      \"state\": \"SECONDARY\",",
+        "      \"health\": 1",
+        "    }",
+        "  ]",
+        "}"
+    ]
+}
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=10   changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

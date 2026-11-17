@@ -1,0 +1,14 @@
+
+PLAY [Verify all five MongoDB nodes] *******************************************
+
+TASK [Check credentials are supplied] ******************************************
+ok: [localhost]
+
+TASK [Verify authenticated cluster health] *************************************
+fatal: [localhost]: FAILED! => {"ansible_facts": {"discovered_interpreter_python": "/usr/bin/python3.13"}, "changed": false, "cmd": ["bash", "scripts/check_cluster.sh"], "delta": "0:00:00.181555", "end": "2026-11-17 01:32:47.187283", "msg": "non-zero return code", "rc": 1, "start": "2026-11-17 01:32:47.005728", "stderr": "FAIL: mongo1 is absent or not running", "stderr_lines": ["FAIL: mongo1 is absent or not running"], "stdout": "PASS: project ownership/name checks", "stdout_lines": ["PASS: project ownership/name checks"]}
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+
+
+EXIT_CODE=2

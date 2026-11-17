@@ -1,0 +1,52 @@
+# Optional constrained-host profile; official 6.0.26 binaries shared read-only.
+services:
+  mongo1:
+    image: mongodb-ansible-lab-runtime:6.0.26
+    volumes:
+      - ${MONGO_RUNTIME_ROOT:?Set MONGO_RUNTIME_ROOT}:/runtime:ro
+    command:
+      - |
+        cp /run/rs0.key /tmp/rs0.key
+        chown mongodb:mongodb /tmp/rs0.key
+        chmod 400 /tmp/rs0.key
+        exec /usr/local/bin/docker-entrypoint.sh mongod --replSet rs0 --bind_ip_all --keyFile /tmp/rs0.key --auth --wiredTigerCacheSizeGB 0.25 --wiredTigerEngineConfigString 'log=(file_max=10MB)'
+  mongo2:
+    image: mongodb-ansible-lab-runtime:6.0.26
+    volumes:
+      - ${MONGO_RUNTIME_ROOT:?Set MONGO_RUNTIME_ROOT}:/runtime:ro
+    command:
+      - |
+        cp /run/rs0.key /tmp/rs0.key
+        chown mongodb:mongodb /tmp/rs0.key
+        chmod 400 /tmp/rs0.key
+        exec /usr/local/bin/docker-entrypoint.sh mongod --replSet rs0 --bind_ip_all --keyFile /tmp/rs0.key --auth --wiredTigerCacheSizeGB 0.25 --wiredTigerEngineConfigString 'log=(file_max=10MB)'
+  mongo3:
+    image: mongodb-ansible-lab-runtime:6.0.26
+    volumes:
+      - ${MONGO_RUNTIME_ROOT:?Set MONGO_RUNTIME_ROOT}:/runtime:ro
+    command:
+      - |
+        cp /run/rs0.key /tmp/rs0.key
+        chown mongodb:mongodb /tmp/rs0.key
+        chmod 400 /tmp/rs0.key
+        exec /usr/local/bin/docker-entrypoint.sh mongod --replSet rs0 --bind_ip_all --keyFile /tmp/rs0.key --auth --wiredTigerCacheSizeGB 0.25 --wiredTigerEngineConfigString 'log=(file_max=10MB)'
+  mongo4:
+    image: mongodb-ansible-lab-runtime:6.0.26
+    volumes:
+      - ${MONGO_RUNTIME_ROOT:?Set MONGO_RUNTIME_ROOT}:/runtime:ro
+    command:
+      - |
+        cp /run/rs0.key /tmp/rs0.key
+        chown mongodb:mongodb /tmp/rs0.key
+        chmod 400 /tmp/rs0.key
+        exec /usr/local/bin/docker-entrypoint.sh mongod --replSet rs0 --bind_ip_all --keyFile /tmp/rs0.key --auth --wiredTigerCacheSizeGB 0.25 --wiredTigerEngineConfigString 'log=(file_max=10MB)'
+  mongo5:
+    image: mongodb-ansible-lab-runtime:6.0.26
+    volumes:
+      - ${MONGO_RUNTIME_ROOT:?Set MONGO_RUNTIME_ROOT}:/runtime:ro
+    command:
+      - |
+        cp /run/rs0.key /tmp/rs0.key
+        chown mongodb:mongodb /tmp/rs0.key
+        chmod 400 /tmp/rs0.key
+        exec /usr/local/bin/docker-entrypoint.sh mongod --replSet rs0 --bind_ip_all --keyFile /tmp/rs0.key --auth --wiredTigerCacheSizeGB 0.25 --wiredTigerEngineConfigString 'log=(file_max=10MB)'

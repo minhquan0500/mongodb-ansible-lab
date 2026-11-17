@@ -1,0 +1,3 @@
+PASS: unauthenticated rs.status denied (Unauthorized)
+
+EXIT_CODE=0
